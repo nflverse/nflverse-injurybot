@@ -32,6 +32,20 @@ fetch_games <- function(season = nflreadr::most_recent_season()){
   nflapi::nflapi_games(season = season) |>
     nflapi::nflapi_parse_games() |>
     dplyr::mutate(
+      dplyr::across(c(away_team, home_team), ~ nflreadr::clean_team_abbrs(.x)),
       game_time = lubridate::as_datetime(time, tz = "America/New_York")
     )
+}
+
+#' @export
+fetch_from_release <- function(game_id){
+  to_load <- paste0(
+    "https://github.com/nflverse/nflverse-injurybot/releases/download/injuries_",
+    substr(game_id, 1, 4), "/", game_id, ".rds"
+  )
+  tmp_file <- tempfile(game_id, fileext = ".rds")
+  on.exit(unlink(tmp_file))
+  download <- curl::curl_fetch_disk(to_load, tmp_file)
+  if (download$status_code != 200) return(data.frame())
+  readRDS(tmp_file)
 }
