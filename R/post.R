@@ -1,7 +1,7 @@
 #' @export
 compute_post_text <- function(game_data){
   paste0(
-    "Today's #NFL injury report ahead of week ",
+    "Today's #NFL injury report ahead of the week ",
     game_data$week,
     " #",
     teams$team_nick[teams$team_abbr == game_data$away_team],
