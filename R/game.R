@@ -7,8 +7,8 @@ evaluate_game <- function(game_id, schedule, injuries){
   game_injuries <- injuries |>
     dplyr::filter(team %in% c(game$away_team, game$home_team))
 
-  status_dates <- c(sort(unique(game_injuries$date)), lubridate::as_date(game$game_time))
-  status_days <- lubridate::wday(as.character(status_dates), label = TRUE, week_start = 1, abbr = FALSE) |>
+  status_dates <- c(sort(unique(game_injuries$date)), format(game$game_time, "%Y-%m-%d"))
+  status_days <- lubridate::wday(status_dates, label = TRUE, week_start = 1, abbr = FALSE, locale = "English") |>
     as.character() |>
     rlang::set_names(status_dates)
 
