@@ -40,9 +40,6 @@ for (game_id in week_games$nflverse_id) {
   tbl <- nflverse.injurybot::compute_game_table(current_game, game_data)
   file_name <- gt::gtsave(tbl, paste0("auto/", game_id, ".png"), zoom = 4, quiet = TRUE)
 
-  # Just in case the code is running too fast,
-  # we take a nap here to protect bsky servers
-  Sys.sleep(3)
   post <- bskyr::bs_post(
     text = nflverse.injurybot::compute_post_text(game_data),
     images = file_name,
@@ -57,5 +54,8 @@ for (game_id in week_games$nflverse_id) {
     tag = paste0("injuries_", season),
     repo = "nflverse/nflverse-injurybot"
   )
+  # Just in case the code is running too fast,
+  # we take a nap here to protect bsky servers
+  Sys.sleep(3)
 }
 
