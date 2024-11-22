@@ -14,6 +14,8 @@ evaluate_game <- function(game_id, schedule, injuries){
 
   game_injuries |>
     dplyr::mutate(
+      dplyr::across(c(ps, gs), ~ stringr::str_wrap(.x, width = 30)),
+      dplyr::across(c(ps, gs), ~ stringr::str_replace_all(.x, "\\n", "<br>")),
       dplyr::across(c(ps, gs), ~ stringr::str_replace_all(.x, "  ", "&nbsp;&nbsp;")),
       dplyr::across(c(ps, gs), ~ stringr::str_replace_all(.x, "LTD&nbsp;", "LTD&nbsp;&nbsp;&nbsp;"))
     ) |>
