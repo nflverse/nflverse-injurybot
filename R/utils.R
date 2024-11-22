@@ -28,7 +28,7 @@ compute_title_string <- function(g){
 
 compute_subtitle_string <- function(g){
   ko <- withr::with_locale(
-    new = c("LC_TIME" = "English"),
+    new = c("LC_TIME" = "C"),
     code = {
       g$time |>
         lubridate::as_datetime() |>
