@@ -1,0 +1,27 @@
+Package: nflverse.injurybot
+Title: Post NFL Injury Reports to Bluesky
+Version: 0.0.0.9000
+Authors@R: 
+    person("Sebastian", "Carl", , "mrcaseb@gmail.com", role = c("aut", "cre"))
+Description: A Bot that Posts NFL Injury Reports to Bluesky
+License: MIT + file LICENSE
+Depends: 
+    R (>= 4.4)
+Imports: 
+    cli (>= 3.6.3),
+    data.table (>= 1.16.2),
+    dplyr (>= 1.1.4),
+    jsonlite (>= 1.8.9),
+    nflapi (>= 0.9.0),
+    nfldx (>= 0.0.0.9000),
+    nflreadr (>= 1.4.1),
+    nflversedata (>= 0.0.12),
+    purrr (>= 1.0.2)
+Remotes: 
+    nflverse/nflapi,
+    nflverse/nfldx,
+    nflverse/nflreadr,
+    nflverse/nflverse-data
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.3.2
