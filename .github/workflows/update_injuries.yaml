@@ -30,7 +30,9 @@ jobs:
 
       - uses: r-lib/actions/setup-r-dependencies@v2
         with:
-          extra-packages: christopherkenny/bskyr
+          extra-packages: |
+            local::.
+            christopherkenny/bskyr
 
       - name: Run update script
         run: Rscript -e 'source("auto/update_injuries.R")'
