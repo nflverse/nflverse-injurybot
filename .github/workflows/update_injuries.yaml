@@ -16,7 +16,7 @@ jobs:
     name: Update Injuries
 
     env:
-      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      GH_TOKEN: ${{ secrets.NFLVERSE_GH_TOKEN }}
       GITHUB_PAT: ${{ secrets.NFLVERSE_GH_TOKEN }}
       BLUESKY_APP_USER: ${{ secrets.BLUESKY_APP_USER }}
       BLUESKY_APP_PASS: ${{ secrets.BLUESKY_APP_PASS }}
