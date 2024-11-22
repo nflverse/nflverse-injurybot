@@ -1,0 +1,36 @@
+on:
+  schedule:
+    # At minute 30 in every hour from Tuesday through Sunday in
+    # every month from September through February
+    - cron:  '30 * * 9-12,1-2 0,2-6'
+  workflow_dispatch:
+
+name: update_injuries.yaml
+
+permissions: read-all
+
+jobs:
+  Injury-Update:
+    runs-on: ubuntu-latest
+
+    name: Update Injuries
+
+    env:
+      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      GITHUB_PAT: ${{ secrets.NFLVERSE_GH_TOKEN }}
+      BLUESKY_APP_USER: ${{ secrets.BLUESKY_APP_USER }}
+      BLUESKY_APP_PASS: ${{ secrets.BLUESKY_APP_PASS }}
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: r-lib/actions/setup-r@v2
+        with:
+          use-public-rspm: true
+
+      - uses: r-lib/actions/setup-r-dependencies@v2
+        with:
+          extra-packages: christopherkenny/bskyr
+
+      - name: Run update script
+        run: Rscript -e 'source("auto/update_injuries.R")'
