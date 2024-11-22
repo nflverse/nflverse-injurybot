@@ -18,25 +18,6 @@ compute_status_string <- function(status, reason1, reason2){
     dplyr::na_if("")
 }
 
-# compute_post_text <- function(game){
-#   paste0(
-#     "Today's #NFL injury report ahead of week ",
-#     game$week,
-#     " #",
-#     teams$team_nick[teams$team_abbr == game$away_team],
-#     ifelse(game$neutral_site, "  vs.  ", "  @  "),
-#     "#",
-#     teams$team_nick[teams$team_abbr == game$home_team],
-#     " matchup"
-#   )
-# }
-#
-# compute_alt_text <- function(){
-#   paste0(
-#     "A table shows player names of two NFL teams and their injury status during the practice week."
-#   )
-# }
-
 compute_title_string <- function(g){
   paste0(
     teams$team_name[teams$team_abbr == g$away_team],
