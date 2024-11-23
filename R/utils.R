@@ -2,9 +2,9 @@ status_abbr <- c(
   "Did Not Participate In Practice" = "DNP",
   "Limited Participation in Practice" = "LTD",
   "Full Participation in Practice" = "FULL",
-  "Questionable" = "QST",
-  "Doubtful" = "DBT",
-  "Out" = "OUT"
+  "Questionable (uncertain as to whether the player will play)" = "QST",
+  "Doubtful (unlikely to play)" = "DBT",
+  "Out (will not play)" = "OUT"
 )
 
 compute_status_string <- function(status, reason1, reason2){
