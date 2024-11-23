@@ -76,9 +76,9 @@ compute_game_table <- function(injury_data, game_data){
         ),
         "<br>",
         paste(
-          paste(paste0("<b>", status_abbr[[4]], "</b>"), names(status_abbr)[[4]], sep = " = "),
-          paste(paste0("<b>", status_abbr[[5]], "</b>"), names(status_abbr)[[5]], sep = " = "),
-          paste(paste0("<b>", status_abbr[[6]], "</b>"), names(status_abbr)[[6]], sep = " = "),
+          paste(paste0("<b>", game_designation[[1]], "</b>"), names(game_designation)[[1]], sep = " = "),
+          paste(paste0("<b>", game_designation[[2]], "</b>"), names(game_designation)[[2]], sep = " = "),
+          paste(paste0("<b>", game_designation[[3]], "</b>"), names(game_designation)[[3]], sep = " = "),
           sep = " // "
         ))
       )
