@@ -58,8 +58,8 @@ compute_game_table <- function(injury_data, game_data){
       fn = function(x){
         designation <- stringr::str_extract(x, "OUT|QST|DBT")
         dplyr::case_when(
-          designation == "OUT" ~ "#640D5F",
-          designation == "DBT" ~ "#D91656",
+          designation == "OUT" ~ "#D91656",
+          designation == "DBT" ~ "#640D5F",
           designation == "QST" ~ "#FFF176FF",
           TRUE ~ "transparent"
         )
