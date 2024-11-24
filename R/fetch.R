@@ -33,7 +33,8 @@ fetch_games <- function(season = nflreadr::most_recent_season()){
     nflapi::nflapi_parse_games() |>
     dplyr::mutate(
       dplyr::across(c(away_team, home_team), ~ nflreadr::clean_team_abbrs(.x)),
-      game_time = lubridate::as_datetime(time, tz = "America/New_York")
+      game_time = lubridate::as_datetime(time),
+      game_day = format(game_time, "%Y-%m-%d", tz = "America/New_York")
     )
 }
 
