@@ -24,6 +24,9 @@ injury_data <- nflverse.injurybot::fetch_injuries(
   week = week
 )
 
+# If this is TRUE, data will be posted even if nothing has changed
+force_post <- FALSE
+
 # Process every game of current week
 for (game_id in week_games$nflverse_id) {
   current_game <- nflverse.injurybot::evaluate_game(game_id, week_games, injury_data)
@@ -31,7 +34,7 @@ for (game_id in week_games$nflverse_id) {
   game_data <- week_games[week_games$nflverse_id == game_id,]
 
   # compare to last run if the file is available. If not, it's likely the first run
-  if (identical(current_game, last_run)){
+  if (identical(current_game, last_run) & !force_post){
     cli::cli_alert_info("No new data for {.val {game_id}}")
     next
   }
@@ -54,6 +57,7 @@ for (game_id in week_games$nflverse_id) {
     tag = paste0("injuries_", season),
     repo = "nflverse/nflverse-injurybot"
   )
+  file.remove(file_name, paste0("auto/", game_id, ".rds"))
   # Just in case the code is running too fast,
   # we take a nap here to protect bsky servers
   Sys.sleep(3)
