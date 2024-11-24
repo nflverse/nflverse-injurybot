@@ -5,7 +5,7 @@ all_season_games <- nflverse.injurybot::fetch_games(season)
 
 # Game Data of current week's games
 week_games <- all_season_games |>
-  dplyr::filter(!grepl("FINAL", status)) |>
+  dplyr::filter(!grepl("FINAL|INGAME", status)) |>
   dplyr::filter(week == min(week))
 
 # Extract week from this week's games and resolve the week number for api
