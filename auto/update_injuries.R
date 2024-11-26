@@ -6,6 +6,13 @@ all_season_games <- nflverse.injurybot::fetch_games(season)
 # Game Data of current week's games
 week_games <- all_season_games |>
   dplyr::filter(!grepl("FINAL|INGAME", status)) |>
+  # compare kickoff time with systime and filter to games in future (just in case
+  # the above filter doesn't work')
+  dplyr::mutate(
+    time = lubridate::as_datetime(time),
+    systime = lubridate::as_datetime(lubridate::format_ISO8601(Sys.time(), usetz = "Z"))
+  ) |>
+  dplyr::filter(time > systime) |>
   dplyr::filter(week == min(week))
 
 # Extract week from this week's games and resolve the week number for api
