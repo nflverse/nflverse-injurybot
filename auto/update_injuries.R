@@ -44,6 +44,10 @@ if (isFALSE(skip_rest)){
   # Process every game of current week
   for (game_id in week_games$nflverse_id) {
     current_game <- nflverse.injurybot::evaluate_game(game_id, week_games, injury_data)
+    if (nrow(current_game) == 0){
+      cli::cli_alert_warning("No injury data available for {.val {game_id}}")
+      next
+    }
     last_run <- nflverse.injurybot::fetch_from_release(game_id)
     game_data <- week_games[week_games$nflverse_id == game_id,]
 
