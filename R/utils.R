@@ -16,10 +16,10 @@ game_designation <- c(
 compute_status_string <- function(status, reason1, reason2){
   stat_chars <- max(nchar(status_abbr[status]), na.rm = TRUE)
   paste0(
-    paste0("<span style='width:", stat_chars+1, "ch;float:left'>"),
+    paste0("<span style='width:", stat_chars, "ch;float:left'>"),
     data.table::fifelse(!is.na(status), status_abbr[status], ""),
     "</span>",
-    data.table::fifelse(!is.na(reason1), "| ", ""),
+    data.table::fifelse(!is.na(reason1), " | ", ""),
     data.table::fifelse(!is.na(reason1), reason1, ""),
     data.table::fifelse(!is.na(reason2), "/", ""),
     data.table::fifelse(!is.na(reason2), reason2, "")
