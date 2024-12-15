@@ -18,7 +18,7 @@ fetch_injuries <- function(season = nflreadr::most_recent_season(),
             stringr::str_to_title()
         }
       ),
-      ps = compute_status_string(practice_status, practice1, practice2),
+      ps = compute_status_string(practices_status, practice1, practice2),
       gs = compute_status_string(injury_status, injury1, injury2)
     ) |>
     dplyr::select(
