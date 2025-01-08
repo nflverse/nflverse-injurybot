@@ -48,13 +48,33 @@ compute_subtitle_string <- function(g){
         )
     }
   )
-  paste0(
-    "Injury Report, ",
-    g$season,
-    ", Week ",
-    g$week,
-    ".  Kickoff: ",
-    ko
+  if (g$season_type == "POST"){
+    paste0(
+      "Injury Report, ",
+      g$season,
+      ", ",
+      compute_playoff_string(g$week_type),
+      ".  Kickoff: ",
+      ko
+    )
+  } else {
+    paste0(
+      "Injury Report, ",
+      g$season,
+      ", Week ",
+      g$week,
+      ".  Kickoff: ",
+      ko
+    )
+  }
+}
+
+compute_playoff_string <- function(game_type){
+  switch (game_type,
+    "WC" = "Wild Card",
+    "DIV" = "Divisional Round",
+    "CON" = "Championship Game",
+    "SB" = "Super Bowl",
   )
 }
 
