@@ -14,6 +14,7 @@ game_designation <- c(
 )
 
 compute_status_string <- function(status, reason1, reason2){
+  if (all(is.na(status))) return("")
   stat_chars <- max(nchar(status_abbr[status]), na.rm = TRUE)
   paste0(
     paste0("<span style='width:", stat_chars + 1, "ch;float:left'>"),
