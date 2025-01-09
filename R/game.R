@@ -32,6 +32,9 @@ evaluate_game <- function(game_id, schedule, injuries){
 
 #' @export
 compute_game_table <- function(injury_data, game_data){
+  injury_teams <- unique(injury_data$team)
+  row_group_order <- c(game_data$away_team, game_data$home_team)
+  row_group_order <- row_group_order[row_group_order %in% injury_teams]
   gt::gt(injury_data, groupname_col = "team") |>
     gt::sub_missing(missing_text = "") |>
     injury_table_theme() |>
@@ -40,7 +43,7 @@ compute_game_table <- function(injury_data, game_data){
       full_name = "player",
       gs = "Game Status"
     ) |>
-    gt::row_group_order(c(game_data$away_team, game_data$home_team)) |>
+    gt::row_group_order(row_group_order) |>
     gt::tab_header(
       title = compute_title_string(game_data),
       subtitle = compute_subtitle_string(game_data)
