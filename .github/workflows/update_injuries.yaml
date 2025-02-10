@@ -1,8 +1,8 @@
 on:
-  schedule:
+  # schedule:
     # Runs daily at 1:30 UTC, and 14:30 - 23:30 UTC in
     # every month from September through February
-    - cron:  '30 1,14/3 * 9-12,1-2 *'
+   #  - cron:  '30 1,14/3 * 9-12,1-2 *'
   workflow_dispatch:
 
 name: update_injuries.yaml
